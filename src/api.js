@@ -29,13 +29,15 @@ const lastYear = `${currentYear - 1}`;
 const nextYear = `${currentYear + 1}`;
 
 //Popular Games
-const current_popular_games = `games?key=${process.env.REACT_APP_API_KEY}&dates=${currentYear}-01-01,${currentDate}&ordering=-rating&page_size=10`;
-const upcoming_games = `games?key=${process.env.REACT_APP_API_KEY}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
-const bestOfLastYear = `games?key=${process.env.REACT_APP_API_KEY}&dates=${lastYear}-01-01,${lastYear}-12-30&ordering=-metacritic&page_size=10`;
+const current_popular_games = `games?key=${process.env.REACT_APP_API_KEY}&dates=${currentYear}-01-01,${currentDate}&ordering=-rating&page_size=9`;
+const upcoming_games = `games?key=${process.env.REACT_APP_API_KEY}&dates=${currentDate},${nextYear}&ordering=-added&page_size=9`;
+const bestOfLastYear = `games?key=${process.env.REACT_APP_API_KEY}&dates=${lastYear}-01-01,${lastYear}-12-30&ordering=-metacritic&page_size=9`;
+const allTimeTop = `games?key=${process.env.REACT_APP_API_KEY}&ordering=-metacritic&page_size=25`;
 
 export const currentPopularGamesURL = () => `${base_url}${current_popular_games}`;
 export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 export const bestOfLastYearURL = () => `${base_url}${bestOfLastYear}`;
+export const allTimeTopURL = () => `${base_url}${allTimeTop}`;
 
 //Game Details
 export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}?key=${process.env.REACT_APP_API_KEY}`;
@@ -43,4 +45,6 @@ export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}?key=${pr
 export const gameScreenshotURL = (game_id) => `${base_url}games/${game_id}/screenshots?key=${process.env.REACT_APP_API_KEY}`;
 
 //Searched game
-export const searchGameURL = (game_name) => `${base_url}games?key=${process.env.REACT_APP_API_KEY}&search=${game_name}&page_size=10`;
+export const searchGameURL = (game_name) => `${base_url}games?key=${process.env.REACT_APP_API_KEY}&search=${game_name}&page_size=9`;
+
+console.log(`${base_url}${current_popular_games}`);

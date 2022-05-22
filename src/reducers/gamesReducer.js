@@ -2,6 +2,7 @@ const initialState = {
   currentPopular: [],
   lastYearBestof: [],
   upComing: [],
+  allTimeTop: [],
   searched: [],
 };
 
@@ -13,6 +14,7 @@ const gamesReducer = (state = initialState, action) => {
         currentPopular: action.payload.currentPopular,
         lastYearBestof: action.payload.lastYearBestof,
         upComing: action.payload.upComing,
+        allTimeTop: action.payload.allTimeTop,
       };
     case "FETCH_SEARCHED":
       return {

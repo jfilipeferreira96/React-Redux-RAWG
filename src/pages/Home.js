@@ -6,10 +6,14 @@ import { loadGames } from "../actions/gamesActions";
 //Components
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
+import CarouselCard from "../components/CarouselCard";
+
 //styling and animation
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "../animations";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 import { useLocation } from "react-router-dom";
 
@@ -26,13 +30,12 @@ function Home() {
 
   //get that data back
   //const games = useSelector((state) => state.games);
-  const { currentPopular, lastYearBestof, upComing, searched } = useSelector((state) => state.games);
+  const { currentPopular, lastYearBestof, upComing, allTimeTop, searched } = useSelector((state) => state.games);
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
       {/* Modal */}
       <AnimatePresence exitBeforeEnter>{pathId && <GameDetail />}</AnimatePresence>
-
       {searched.length > 0 && (
         <div className="searched">
           <h2>Searched Games</h2>
@@ -43,10 +46,26 @@ function Home() {
           </Games>
         </div>
       )}
-
       <Title>
         <h1>Best Video Games of All Time</h1>
       </Title>
+
+      <Splide
+        options={{
+          perPage: 4,
+          arrows: false,
+          pagination: false,
+          drag: "free",
+          gap: "3rem",
+        }}
+      >
+        {allTimeTop.map((game) => (
+          <SplideSlide key={game.id}>
+            <CarouselCard name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+          </SplideSlide>
+        ))}
+      </Splide>
+
       <h2>
         <strong>Upcoming Games</strong>
       </h2>
