@@ -80,7 +80,12 @@ function GameDetail({ pathId }) {
                 <h3>Platforms</h3>
                 <Platforms>
                   {game.platforms.map((data) => (
-                    <img alt={data.platform.name} key={data.platform.id} src={getPlatform(data.platform.name)}></img>
+                    <img
+                      title={data.platform.name}
+                      alt={data.platform.name}
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                    ></img>
                   ))}
                 </Platforms>
               </Info>

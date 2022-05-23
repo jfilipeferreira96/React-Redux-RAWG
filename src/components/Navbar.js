@@ -63,8 +63,15 @@ const StyleNav = styled(motion.nav)`
 `;
 
 const FormStyle = styled.form`
-  margin: 0rem 20rem 1rem 20rem;
+  margin-bottom: 16px;
+  margin-left: 200px;
+  margin-right: 200px;
 
+  @media (max-width: 768px) {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 16px;
+  }
   div {
     width: 100%;
     position: relative;

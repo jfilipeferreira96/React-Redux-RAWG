@@ -41,7 +41,14 @@ function Home() {
           <h2>Searched Games</h2>
           <Games>
             {searched.map((game) => (
-              <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                image={game.background_image}
+                key={game.id}
+                metacritic={game.metacritic}
+              />
             ))}
           </Games>
         </div>
@@ -57,6 +64,14 @@ function Home() {
           pagination: false,
           drag: "free",
           gap: "3rem",
+          breakpoints: {
+            1140: {
+              perPage: 2,
+            },
+            640: {
+              perPage: 1,
+            },
+          },
         }}
       >
         {allTimeTop.map((game) => (
@@ -71,7 +86,14 @@ function Home() {
       </h2>
       <Games>
         {upComing.map((game) => (
-          <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+            metacritic={game.metacritic}
+          />
         ))}
       </Games>
       <h2>
@@ -79,7 +101,14 @@ function Home() {
       </h2>
       <Games>
         {currentPopular.map((game) => (
-          <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+            metacritic={game.metacritic}
+          />
         ))}
       </Games>
       <h2>
@@ -87,7 +116,14 @@ function Home() {
       </h2>
       <Games>
         {lastYearBestof.map((game) => (
-          <Game name={game.name} released={game.released} id={game.id} image={game.background_image} key={game.id} />
+          <Game
+            name={game.name}
+            released={game.released}
+            id={game.id}
+            image={game.background_image}
+            key={game.id}
+            metacritic={game.metacritic}
+          />
         ))}
       </Games>
     </GameList>
@@ -106,7 +142,7 @@ const GameList = styled(motion.div)`
     height: 2px;
     left: 0;
     right: 0;
-    background: red;
+    background: #6c6c6c;
     position: absolute;
     z-index: -1;
   }
@@ -120,7 +156,7 @@ const GameList = styled(motion.div)`
 const Games = styled(motion.div)`
   min-height: 80vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 3rem;
 `;

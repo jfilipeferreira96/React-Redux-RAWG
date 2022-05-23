@@ -11,7 +11,7 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
-function CarouselCard({ name, released, image, id }) {
+function CarouselCard({ name, released, image, id, metacritic }) {
   //Load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
@@ -20,28 +20,35 @@ function CarouselCard({ name, released, image, id }) {
   };
   return (
     <Card layoutId={id.toString()} onClick={loadDetailHandler} variants={popup} initial="hidden" animate="show">
-      <motion.img src={image} alt={name} />
-      <div class="info">
-        <h1>Road</h1>
-        <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
+      <motion.img src={image ? smallImage(image, 640) : ""} alt={name} />
+      <div className="info">
+        <h1>{name}</h1>
+        <p>{released}</p>
+        <Link to={`/game/${id}`}>
+          <button>Details</button>
+        </Link>
       </div>
     </Card>
   );
 }
 
 const Card = styled.div`
-  width: 280px;
-  height: 360px;
+  min-height: 25rem;
   border-radius: 15px;
   padding: 1.5rem;
   background: white;
   position: relative;
   display: flex;
   transition: 0.4s ease-out;
-  box-shadow: 0px 7px 10px rgba(black, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(20px);
     &:before {
       opacity: 1;
     }
@@ -59,7 +66,7 @@ const Card = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 15px;
-    background: rgba(black, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 2;
     transition: 0.5s;
     opacity: 0;
@@ -67,7 +74,6 @@ const Card = styled.div`
   img {
     width: 100%;
     height: 100%;
-    -o-object-fit: cover;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -77,6 +83,9 @@ const Card = styled.div`
 
   .info {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 3;
     color: white;
     opacity: 0;
@@ -84,11 +93,31 @@ const Card = styled.div`
     transition: 0.5s;
     h1 {
       margin: 0px;
+      font-size: 2.3rem;
+      font-weight: bold;
+      line-height: 1.2;
     }
     p {
-      letter-spacing: 1px;
-      font-size: 15px;
-      margin-top: 8px;
+      color: #ccc;
+      font-size: 1.125rem;
+      font-style: italic;
+      line-height: 1.35;
+    }
+    button {
+      margin-top: 15px;
+      padding: 0.6rem;
+      outline: none;
+      border: none;
+      border-radius: 3px;
+      font-size: 1rem;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.4s ease;
+      &:hover {
+        background: #ccc;
+      }
     }
   }
 `;
