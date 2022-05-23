@@ -34,8 +34,6 @@ function Home() {
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
-      {/* Modal */}
-      <AnimatePresence exitBeforeEnter>{pathId && <GameDetail />}</AnimatePresence>
       {searched.length > 0 && (
         <div className="searched">
           <h2>Searched Games</h2>
