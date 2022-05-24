@@ -8,13 +8,12 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesActions";
 //Components
-import GameDetail from "../components/GameDetail";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 function Details() {
   const { searched } = useSelector((state) => state.games);
 
-  const location = useLocation();
+  const params = useParams();
 
   //Fetch the games and save it to the store
   const dispatch = useDispatch();

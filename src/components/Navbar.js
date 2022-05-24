@@ -32,7 +32,7 @@ function Navbar() {
   };
 
   const clearSearched = () => {
-    dispatch({ type: "CLEAR_SEARCHED" });
+    /* dispatch({ type: "CLEAR_SEARCHED" }); */
     navigate(-1);
   };
 
