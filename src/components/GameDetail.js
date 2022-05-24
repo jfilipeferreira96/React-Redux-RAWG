@@ -2,7 +2,6 @@ import React from "react";
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 //redux
 import { useSelector } from "react-redux";
 import { smallImage } from "../util";
@@ -18,20 +17,9 @@ import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
 function GameDetail({ pathId }) {
-  const navigate = useNavigate();
   //Data
   //const detail = useSelector((state) => state.detail);
   const { game, screenshots, isLoading } = useSelector((state) => state.detail);
-
-  const exitDetailHandler = (e) => {
-    const element = e.target;
-    //onclick outside of the modal with the class shadow it adds overflow to the page
-    //and sends back to "/"
-    if (element.classList.contains("shadow")) {
-      document.body.style.overflow = "auto";
-      navigate(-1);
-    }
-  };
 
   //Get Platform Images Icons
   const getPlatform = (platform) => {
@@ -68,71 +56,49 @@ function GameDetail({ pathId }) {
   return (
     <>
       {!isLoading && (
-        <CardShadow className="shadow" onClick={exitDetailHandler}>
-          <Detail>
-            <Stats>
-              <div className="rating">
-                <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
-                <p>Rating: {game.rating} </p>
-                {getStars()}
-              </div>
-              <Info>
-                <h3>Platforms</h3>
-                <Platforms>
-                  {game.platforms.map((data) => (
-                    <img
-                      title={data.platform.name}
-                      alt={data.platform.name}
-                      key={data.platform.id}
-                      src={getPlatform(data.platform.name)}
-                    ></img>
-                  ))}
-                </Platforms>
-              </Info>
-            </Stats>
-            <Media>
-              <motion.img layoutId={`image ${pathId}`} src={smallImage(game.background_image, 1280)} alt="image" />
-            </Media>
-            <Description>
-              <p>{game.description_raw}</p>
-            </Description>
-            <div className="gallery">
-              {screenshots.results.map((screen) => (
-                <img key={screen.id} src={smallImage(screen.image, 1280)} alt="game screen" />
-              ))}
+        <Detail>
+          <Stats>
+            <div className="rating">
+              <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
+              <p>Rating: {game.rating} </p>
+              {getStars()}
             </div>
-          </Detail>
-        </CardShadow>
+            <Info>
+              <h3>Platforms</h3>
+              <Platforms>
+                {game.platforms.map((data) => (
+                  <img
+                    title={data.platform.name}
+                    alt={data.platform.name}
+                    key={data.platform.id}
+                    src={getPlatform(data.platform.name)}
+                  ></img>
+                ))}
+              </Platforms>
+            </Info>
+          </Stats>
+          <Media>
+            {game.background_image && <motion.img layoutId={`image ${pathId}`} src={smallImage(game.background_image, 1280)} alt="image" />}
+          </Media>
+          <Description>
+            <p>{game.description_raw}</p>
+          </Description>
+          <div className="gallery">
+            {screenshots.results.map((screen) => (
+              <img key={screen.id} src={smallImage(screen.image, 1280)} alt="game screen" />
+            ))}
+          </div>
+        </Detail>
       )}
     </>
   );
 }
 
-const CardShadow = styled(motion.div)`
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: scroll;
-  background: rgba(0, 0, 0, 1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #ff7676;
-  }
-  &::-webkit-scrollbar-track {
-    background: white;
-  }
-`;
-
 const Detail = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
   padding: 2rem 5rem;
-  background: #17161a;
+  /*  background: #17161a;*/
   position: absolute;
   left: 10%;
   color: black;

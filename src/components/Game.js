@@ -11,11 +11,10 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
-function Game({ name, released, image, id, metacritic }) {
+function Game({ name, image, id, metacritic }) {
   //Load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
-    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
 

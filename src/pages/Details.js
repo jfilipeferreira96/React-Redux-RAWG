@@ -5,11 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesActions";
 //Components
 import GameDetail from "../components/GameDetail";
-
-//styling and animation
-import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
-
 import { useLocation } from "react-router-dom";
 
 function Details() {
@@ -23,7 +18,7 @@ function Details() {
     dispatch(loadGames());
   }, [dispatch]);
 
-  return <AnimatePresence exitBeforeEnter>{pathId && <GameDetail />}</AnimatePresence>;
+  return pathId && <GameDetail />;
 }
 
 export default Details;

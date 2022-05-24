@@ -11,11 +11,10 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
-function CarouselCard({ name, released, image, id, metacritic }) {
+function CarouselCard({ name, released, image, id }) {
   //Load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
-    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (

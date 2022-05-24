@@ -5,22 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesActions";
 //Components
 import Game from "../components/Game";
-import GameDetail from "../components/GameDetail";
 import CarouselCard from "../components/CarouselCard";
 
 //styling and animation
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { fadeIn } from "../animations";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-import { useLocation } from "react-router-dom";
-
 function Home() {
-  const location = useLocation();
-  const pathId = location.pathname.split("/")[2];
-
   //Fetch the games and save it to the store
   const dispatch = useDispatch();
 
@@ -30,27 +24,10 @@ function Home() {
 
   //get that data back
   //const games = useSelector((state) => state.games);
-  const { currentPopular, lastYearBestof, upComing, allTimeTop, searched } = useSelector((state) => state.games);
+  const { currentPopular, lastYearBestof, upComing, allTimeTop } = useSelector((state) => state.games);
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
-      {searched.length > 0 && (
-        <div className="searched">
-          <h2>Searched Games</h2>
-          <Games>
-            {searched.map((game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-                metacritic={game.metacritic}
-              />
-            ))}
-          </Games>
-        </div>
-      )}
       <Title>
         <h1>Best Video Games of All Time</h1>
       </Title>
@@ -63,10 +40,10 @@ function Home() {
           drag: "free",
           gap: "3rem",
           breakpoints: {
-            1140: {
+            1412: {
               perPage: 2,
             },
-            640: {
+            1009: {
               perPage: 1,
             },
           },

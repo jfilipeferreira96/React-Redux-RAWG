@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 //Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -12,6 +14,7 @@ import { useDispatch } from "react-redux";
 
 function Navbar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [textInput, setTextInput] = useState("");
 
@@ -22,13 +25,15 @@ function Navbar() {
 
   const submitSearch = (e) => {
     e.preventDefault();
-    console.log("textInput", textInput);
+
     dispatch(fetchSearch(textInput));
+    navigate("/searched/" + textInput);
     setTextInput("");
   };
 
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
+    navigate(-1);
   };
 
   return (
