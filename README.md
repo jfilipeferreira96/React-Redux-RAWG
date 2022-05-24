@@ -2,7 +2,7 @@
 
 ## 💻 About
 
-You can check this project at:
+You can check this project at: https://fanciful-lamington-cd7217.netlify.app/
 
 The goal of this project was to use and learn about the Redux State Management.
 
